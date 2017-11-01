@@ -1,11 +1,18 @@
 package xrate;
 
+import java.net.*;
+import java.io.*;
+import javax.xml.parsers.*;
+import org.w3c.dom.*;
+import org.xml.sax.SAXException;
+
 /**
  * Provide access to basic currency exchange rate services.
  * 
  * @author TEAM
  *         Francisco Montanez
  */
+
 public class ExchangeRateReader {
 
     /**
@@ -19,6 +26,9 @@ public class ExchangeRateReader {
      * @param baseURL
      *            the base URL for requests
      */
+
+    private String baseURL;
+
     public ExchangeRateReader(String baseURL) {
         this.baseURL = baseURL;
     }
@@ -41,8 +51,26 @@ public class ExchangeRateReader {
      * @throws SAXException
      */
     public float getExchangeRate(String currencyCode, int year, int month, int day) {
-        // TODO Your code here
-        throw new UnsupportedOperationException();
+
+        String cURL;
+
+        // for concatenation of months and days if required
+        if (month < 10) {
+        	cURL = baseURL + year + "/0" + month;
+        }
+        else {
+        	cURL = baseURL + year + "/" + month;
+        }
+
+        if (day < 10) {
+        	CURL = cURL + "/0" + day + ".xml";
+        }
+        else {
+        	cURL = cURL + "/" + day + ".xml";
+        }
+        
+
+        // throw new UnsupportedOperationException();
     }
 
     /**
