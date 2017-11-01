@@ -29,6 +29,7 @@ public class ExchangeRateReader {
 
     private String baseURL;
 
+    // the base
     public ExchangeRateReader(String baseURL) {
         this.baseURL = baseURL;
     }
@@ -50,7 +51,8 @@ public class ExchangeRateReader {
      * @throws ParserConfigurationException
      * @throws SAXException
      */
-    public float getExchangeRate(String currencyCode, int year, int month, int day) {
+    public float getExchangeRate(String currencyCode, int year, int month, int day) throws IOException, 
+    ParserConfigurationException, SAXException {
 
         String cURL;
 
@@ -69,14 +71,22 @@ public class ExchangeRateReader {
         	cURL = cURL + "/" + day + ".xml";
         }
 
-		URL url = URL(CURL);
-        docuement doc = createDocx(url);
+		URL url = new URL(cURL);
+        Docuement doc = createDoc(url);
 
-      	NodeList currencyCL = doc.getELementsbyTagName("currency_Code");
+       	// using tag name to get nodelist
+      	NodeList currencyCL = doc.getElementsByTagName("currency_code");
 
-      	int index = findIndexOF(currencyCL);
+      	// to find index of target in nodelist
+      	int index = findIndexOf(currencyCL, currencyCode);
 
-      	float exchRate;
+      	// using tag name to get another nodelist
+      	NodeList rList = doc.getElementsByTagName("rate");
+
+      	// finding exchange rate in nodelist
+      	float exRate = findRate(rateList, index);
+
+      	return exRate;
     }
 
     /**
