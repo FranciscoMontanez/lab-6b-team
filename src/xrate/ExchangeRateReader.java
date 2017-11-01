@@ -63,14 +63,20 @@ public class ExchangeRateReader {
         }
 
         if (day < 10) {
-        	CURL = cURL + "/0" + day + ".xml";
+        	cURL = cURL + "/0" + day + ".xml";
         }
         else {
         	cURL = cURL + "/" + day + ".xml";
         }
-        
 
-        // throw new UnsupportedOperationException();
+		URL url = URL(CURL);
+        docuement doc = createDocx(url);
+
+      	NodeList currencyCL = doc.getELementsbyTagName("currency_Code");
+
+      	int index = findIndexOF(currencyCL);
+
+      	float exchRate;
     }
 
     /**
