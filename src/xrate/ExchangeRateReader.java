@@ -3,7 +3,8 @@ package xrate;
 /**
  * Provide access to basic currency exchange rate services.
  * 
- * @author PUT YOUR TEAM NAME HERE
+ * @author TEAM
+ *         Francisco Montanez
  */
 public class ExchangeRateReader {
 
@@ -19,7 +20,7 @@ public class ExchangeRateReader {
      *            the base URL for requests
      */
     public ExchangeRateReader(String baseURL) {
-        // TODO Your code here
+        this.baseURL = baseURL;
     }
 
     /**
